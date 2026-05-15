@@ -85,5 +85,5 @@ Este projeto está sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE) par
 ---
 
 <p align="center">
-  Desenvolvido com ❤️ pelo <b>Pixel Squad</b>
+  Desenvolvido com dedição e responsabilidade com os termos da LGPD pelo <b>Pixel Squad</b>
 </p>
