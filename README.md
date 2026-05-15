@@ -1,37 +1,89 @@
-# Projeto CelularJOVI - Protótipo de Câmera
+# 📸 JOVI Camera - Smartphone Interface Prototype
 
-Este projeto é um protótipo interativo de uma interface de câmera de smartphone, desenvolvido inteiramente em **JavaScript Vanila**, CSS e HTML, sem o uso de frameworks externos.
+![JOVI Camera Hero](assets/hero_camera_jovi.png)
 
-## Autores
-- **Nome:** [Seu Nome Completo Aqui]
-- **RM:** [Seu RM Aqui]
+> **Protótipo interativo de uma interface de câmera de smartphone premium, desenvolvido para oferecer uma experiência de usuário fluida e repleta de recursos inteligentes.**
 
-## Funcionalidades Implementadas
+---
 
-1.  **Manipulação Dinâmica de Elementos e Eventos**:
-    - Transição entre modos de câmera com feedback visual em tempo real.
-    - Controles de zoom, foco e exposição interativos.
-    - Interface adaptativa para modos específicos (Pro, Vídeo, Estudante).
+## 🌟 Visão Geral
 
-2.  **Notificações Customizadas**:
-    - Substituição de `alert()`, `confirm()` e `prompt()` por um sistema de notificações interno.
-    - As notificações aparecem no topo do viewfinder e desaparecem automaticamente após 2 segundos, sem interromper o fluxo do usuário.
-    - Ativação direta dos modos Pro e Noite sem janelas de diálogo.
+O **JOVI Camera** é uma aplicação web que simula a interface de uma câmera de smartphone de última geração. O projeto foca em **UX/UI Design** e **Manipulação Dinâmica do DOM**, trazendo funcionalidades avançadas que vão desde o controle manual "Pro" até assistentes inteligentes para estudantes.
 
-3.  **Manipulação de Imagens (Slideshow)**:
-    - Galeria interativa integrada com sistema de slideshow.
-    - Navegação entre fotos capturadas usando controles de "anterior" e "próximo".
-    - Indicadores visuais (dots) para a posição atual no slideshow.
+Desenvolvido inteiramente em **Vanilla JavaScript**, o projeto demonstra como criar interfaces complexas, reativas e performáticas sem a necessidade de frameworks externos.
 
-4.  **Gerenciamento de Eventos com o DOM**:
-    - Captura de cliques, toques e arrastes para o carrossel infinito.
-    - Botão de obturador (Shutter) com animações de feedback.
-    - Toggles para Flash, Timer e Proporção (Ratio).
+---
 
-5.  **Tecnologias**:
-    - HTML5 Semântico.
-    - CSS3 (Flexbox, Grid, Animações, Backdrop-filter).
-    - JavaScript ES6+ (Manipulação de DOM, Event Listeners, Sets, IIFEs).
+## 🚀 Funcionalidades Principais
 
-## Como Executar
-Basta abrir o arquivo `index.html` em qualquer navegador moderno.
+### 🎭 Modos de Captura Dinâmicos
+- **Foto & Vídeo**: Transições suaves com indicadores de gravação em tempo real.
+- **Modo Pro**: Controle total sobre parâmetros fotográficos:
+  - `ISO`, `Velocidade do Obturador (S)`, `Exposição (EV)`, `Balanço de Branco (WB)` e `Foco (AF)`.
+- **Modo Noturno & Retrato**: Algoritmos visuais simulados para capturas específicas.
+- **Panorâmica**: Guia visual interativo para capturas amplas.
+
+### 🎓 Student Mode (AI Powered)
+Uma funcionalidade inovadora voltada para produtividade acadêmica:
+- **Resumir**: Identifica pontos-chave em textos fotografados usando simulação de IA.
+- **Anotar**: Permite adicionar notas rápidas e categorizar por disciplinas.
+- **Exportar**: Conversão direta para formatos como `.PDF`, `.DOCX` ou envio para o Google Docs.
+
+### 📄 Scanner de Documentos
+- Enquadramento inteligente para digitalização de papéis.
+- Fluxo de exportação otimizado para documentos profissionais.
+
+### 🛠️ UX & Interatividade
+- **Sistema de Notificações**: Substituição de diálogos nativos (`alert`, `confirm`) por toasts elegantes e não-intrusivos.
+- **Galeria Integrada**: Navegação em slideshow com controles de toque e indicadores visuais.
+- **Controle de Gestos**: Ajuste de brilho e foco diretamente no viewfinder.
+- **Zoom Fluido**: Seleção rápida entre lentes (.5x, 1x, 2x, 3x).
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+O projeto utiliza o estado da arte do desenvolvimento web nativo:
+
+- ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) **Estrutura Semântica**
+- ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) **Design Responsivo & Glassmorphism** (Flexbox, Grid, Animações complexas)
+- ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) **ES6+ Core** (Manipulação de DOM, Event Listeners, IIFEs, Gerenciamento de Estado)
+
+---
+
+## 👥 Pixel Squad - 1ESPY
+
+Conheça a equipe por trás do desenvolvimento do JOVI Camera:
+
+| Integrante | RM |
+| :--- | :--- |
+| **Pedro Henrique Marques** | 569307 |
+| **Evandro Marcondes** | 572473 |
+| **Enzo Alves** | 569665 |
+| **Raphael de Oliveira** | 571065 |
+| **Renan Queiroz** | 569077 |
+
+---
+
+## 🔧 Como Executar
+
+O projeto é "Plug & Play". Nenhuma instalação de dependências é necessária.
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/Pixel-Squad-Challege/APPCameraJovi
+   ```
+2. Abra o arquivo `index.html` em seu navegador de preferência.
+3. Recomendamos utilizar a **ferramenta de desenvolvedor (F12)** no modo de visualização mobile (preferencialmente iPhone 12/13/14 Pro) para a melhor experiência.
+
+---
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+<p align="center">
+  Desenvolvido com dedição e responsabilidade com os termos da LGPD pelo <b>Pixel Squad</b>
+</p>
