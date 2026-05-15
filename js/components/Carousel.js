@@ -245,6 +245,11 @@
     if (focusBoxStudent) focusBoxStudent.style.display = selectedMode === 'Estudante' ? 'block' : 'none';
     if (panoGuide)       panoGuide.style.display       = selectedMode === 'Panorâmica' ? 'flex' : 'none';
     if (studentActions)  studentActions.style.display  = selectedMode === 'Estudante' ? 'flex' : 'none';
+
+    // Chama a função externa para lidar com lógica específica de cada modo
+    if (window.handleModeChange) {
+      window.handleModeChange(selectedMode);
+    }
   };
 
   window.scrollToMode = (mode, smooth = true) => {
@@ -269,15 +274,32 @@
 
   // ── INIT ─────────────────────────────────────────────────
   const init = () => {
-    // Cópia do meio = índice 2 (0-based), de 5 cópias
+    // 1. Primeiro definimos qual modo está ativo para ele ganhar o estilo (dot, flex, etc.)
+    // Isso garante que offsetWidth/offsetLeft já considerem o estado "ativo".
+    updateModeSelection(ACTIVE_DEFAULT);
+
+    // 2. Cópia do meio = índice 2 (0-based), de 5 cópias
     const MIDDLE_COPY  = 2;
     const defaultIdx   = MODES.indexOf(ACTIVE_DEFAULT);
     const targetEl     = bar.children[MIDDLE_COPY * N + defaultIdx];
-    setX(wrap(xForEl(targetEl)));
-    updateModeSelection(ACTIVE_DEFAULT);
+
+    if (targetEl) {
+      // 3. Medimos e centralizamos
+      setX(wrap(xForEl(targetEl)));
+    }
   };
 
-  // Garante layout pronto antes de medir
-  requestAnimationFrame(() => requestAnimationFrame(init));
+  // Garante layout pronto e fontes carregadas antes de medir
+  const startInit = () => {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(init);
+    });
+  };
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(startInit);
+  } else {
+    startInit();
+  }
 
 })();

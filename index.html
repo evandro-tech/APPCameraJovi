@@ -65,10 +65,17 @@
           <div class="pano-arrow"></div>
         </div>
 
+        <div class="doc-scanner-frame" id="doc-scanner-frame" style="display:none;"></div>
+
         <div class="student-actions" id="student-actions" style="display:none;">
           <button class="student-btn">Resumir</button>
           <button class="student-btn">Anotar</button>
           <button class="student-btn">Exportar</button>
+        </div>
+
+        <div class="student-actions" id="doc-actions" style="display:none;">
+          <button class="student-btn">Digitalizar</button>
+          <button class="student-btn" data-open="overlay-doc-exportar">Exportar</button>
         </div>
 
         <div class="brightness-track" id="brightness-track">
@@ -87,6 +94,18 @@
           <div class="red-dot"></div>
           <span id="recording-timer">00:00</span>
         </div>
+
+        <!-- Pro Mode Extra Controls -->
+        <div id="pro-controls" class="pro-controls">
+          <div class="pro-item"><span>ISO</span><strong>Auto</strong></div>
+          <div class="pro-item"><span>S</span><strong>1/125</strong></div>
+          <div class="pro-item"><span>EV</span><strong>0.0</strong></div>
+          <div class="pro-item"><span>WB</span><strong>Auto</strong></div>
+          <div class="pro-item"><span>AF</span><strong>AF-C</strong></div>
+        </div>
+
+        <!-- Camera Notification -->
+        <div id="camera-notification" class="camera-notification"></div>
 
       </div><!-- /viewfinder -->
 
@@ -120,6 +139,45 @@
         </div>
 
       </div><!-- /bottom-controls -->
+
+      <!-- Gallery / Slideshow Overlay -->
+      <div id="gallery-overlay" class="gallery-overlay">
+        <div class="gallery-header">
+          <button class="gallery-close" id="gallery-close">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+          </button>
+          <span>Galeria</span>
+        </div>
+        <div class="slideshow-container">
+          <div class="slide fade">
+            <img src="assets/photo1.png" style="width:100%">
+          </div>
+          <div class="slide fade">
+            <img src="assets/photo2.png" style="width:100%">
+          </div>
+          <div class="slide fade">
+            <img src="assets/photo3.png" style="width:100%">
+          </div>
+          <div class="slide fade">
+            <img src="assets/photo4.png" style="width:100%">
+          </div>
+          <div class="slide fade">
+            <img src="assets/photo5.png" style="width:100%">
+          </div>
+          <a class="prev" id="prev-slide">&#10094;</a>
+          <a class="next" id="next-slide">&#10095;</a>
+        </div>
+        <div class="slideshow-dots" id="slideshow-dots">
+          <span class="dot" onclick="currentSlide(1)"></span>
+          <span class="dot" onclick="currentSlide(2)"></span>
+          <span class="dot" onclick="currentSlide(3)"></span>
+          <span class="dot" onclick="currentSlide(4)"></span>
+          <span class="dot" onclick="currentSlide(5)"></span>
+        </div>
+      </div>
+
 
       <!-- More Modes Overlay -->
       <div id="more-modes-overlay" class="more-modes-container">
@@ -267,6 +325,47 @@
       <button class="student-action-btn secondary">Copiar texto</button>
     </div>
   </div>
+
+<!-- Overlay: Exportar Documento -->
+<div class="student-overlay" id="overlay-doc-exportar">
+  <div class="student-overlay-panel">
+    <div class="student-overlay-header">
+      <button class="student-back-btn" data-close="overlay-doc-exportar">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M11 4L6 9L11 14" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <span class="student-overlay-title">Exportar Documento</span>
+      <div style="width:32px;"></div>
+    </div>
+    <div class="student-ai-badge">✦ Scanner</div>
+    <div class="student-card">
+      <div class="student-card-title">Prévia da Digitalização</div>
+      <div style="height: 120px; background: rgba(255,255,255,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+        <img src="assets/photo2.png" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.7;">
+      </div>
+    </div>
+    <div class="student-card" style="margin-top:12px;">
+      <div class="student-card-label">Qualidade</div>
+      <div class="student-tags" style="margin-top:8px;">
+        <span class="student-tag active-tag">Alta</span>
+        <span class="student-tag">Média</span>
+        <span class="student-tag">Baixa</span>
+      </div>
+    </div>
+    <div class="student-card" style="margin-top:12px;">
+      <div class="student-card-label">Formato</div>
+      <div class="student-tags" style="margin-top:8px;">
+        <span class="student-tag active-tag">.PDF</span>
+        <span class="student-tag">.JPG</span>
+        <span class="student-tag">.PNG</span>
+      </div>
+    </div>
+    <div class="student-overlay-footer">
+      <button class="student-action-btn primary">Salvar PDF</button>
+      <button class="student-action-btn secondary">Compartilhar</button>
+    </div>
+  </div>
 </div>
 
     </div><!-- /camera-app -->
@@ -278,6 +377,8 @@
   <script src="js/components/ViewfinderInteractions.js"></script>
   <script src="js/components/Shutter.js"></script>
   <script src="js/components/Carousel.js"></script>
+  <script src="js/components/ModeFunctions.js"></script>
+  <script src="js/components/Gallery.js"></script>
   <script src="js/components/StudentMode.js"></script>
 </body>
 </html>
