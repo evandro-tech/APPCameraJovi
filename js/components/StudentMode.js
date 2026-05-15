@@ -124,10 +124,24 @@ document.addEventListener('click', (e) => {
         return;
     }
 
+    // Lógica específica para Salvar alterações
+    if (actionText === 'Salvar alterações') {
+        const googleDocsBtn = overlay.querySelector('#btn-google-docs-save');
+        if (googleDocsBtn) {
+            googleDocsBtn.disabled = false;
+            googleDocsBtn.style.opacity = '1';
+            googleDocsBtn.style.cursor = 'pointer';
+            googleDocsBtn.classList.remove('secondary');
+            googleDocsBtn.classList.add('primary');
+        }
+        if (window.showNotification) window.showNotification('Alterações salvas!');
+        return;
+    }
+
     // Simulação de ação concluída
     if (window.showNotification) {
         let message = 'Ação realizada!';
-        if (actionText === 'Exportar para Google Docs') message = 'Exportação concluída!';
+        if (actionText === 'Exportar para Google Docs' || actionText === 'Salvar no google docs') message = 'Exportação concluída!';
         else if (actionText === 'Salvar PDF') message = 'Salvo com sucesso!';
         else if (actionText === 'Compartilhar') message = 'Compartilhado com sucesso!';
         else if (actionText.includes('Salvar')) message = 'Salvo com sucesso!';
