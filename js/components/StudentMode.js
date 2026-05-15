@@ -11,13 +11,28 @@ const openOverlay = (id) => {
             setTimeout(() => {
                 skeleton.style.opacity = '0';
                 setTimeout(() => {
-                    skeleton.innerHTML = `
-                        <p style="color:rgba(255,255,255,0.75); font-size:12.5px; line-height:1.6; margin:0;">
-                            O conteúdo analisado aborda os princípios da <b>Termodinâmica</b>, com foco na Primeira Lei e na conservação de energia em sistemas fechados. Foram identificados exemplos práticos envolvendo máquinas térmicas e ciclos de compressão.
-                        </p>
-                    `;
+                    const shortText = "A análise deste documento identificou padrões térmicos consistentes com o comportamento de fluidos em recipientes isolados, sugerindo uma aplicação direta da lei de conservação...";
+                    const fullText = "A análise deste documento identificou padrões térmicos consistentes com o comportamento de fluidos em recipientes isolados, sugerindo uma aplicação direta da lei de conservação de energia. O conteúdo analisado aborda os princípios da Termodinâmica, com foco na Primeira Lei e na conservação de energia em sistemas fechados. Foram identificados exemplos práticos envolvendo máquinas térmicas e ciclos de compressão.";
+
+                    const updateContent = (isFull) => {
+                        skeleton.innerHTML = `
+                            <p style="color:rgba(255,255,255,0.75); font-size:12.5px; line-height:1.6; margin:0;">
+                                ${isFull ? fullText : shortText}
+                                <span class="toggle-text" style="color:#5c9df5; cursor:pointer; font-weight:600; margin-left:4px;">${isFull ? 'Ver menos' : 'Ver mais'}</span>
+                            </p>
+                        `;
+                    };
+
+                    updateContent(false);
                     skeleton.style.opacity = '1';
                     el.dataset.loaded = "true";
+
+                    skeleton.addEventListener('click', (e) => {
+                        if (e.target.classList.contains('toggle-text')) {
+                            const isCurrentlyFull = e.target.textContent === 'Ver menos';
+                            updateContent(!isCurrentlyFull);
+                        }
+                    });
                 }, 300);
             }, 1500);
         }
@@ -112,7 +127,8 @@ document.addEventListener('click', (e) => {
     // Simulação de ação concluída
     if (window.showNotification) {
         let message = 'Ação realizada!';
-        if (actionText === 'Salvar PDF') message = 'Salvo com sucesso!';
+        if (actionText === 'Exportar para Google Docs') message = 'Exportação concluída!';
+        else if (actionText === 'Salvar PDF') message = 'Salvo com sucesso!';
         else if (actionText === 'Compartilhar') message = 'Compartilhado com sucesso!';
         else if (actionText.includes('Salvar')) message = 'Salvo com sucesso!';
         else if (actionText.includes('Exportar')) message = 'Exportação iniciada...';
