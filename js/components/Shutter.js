@@ -50,6 +50,11 @@ function handleVideoRecording() {
     recordingIndicator.style.display = 'none';
     clearInterval(recInterval);
     recordingTimer.innerText = '00:00';
+    
+    // Abrir menu de destino após vídeo
+    setTimeout(() => {
+      if (typeof openOverlay === 'function') openOverlay('overlay-capture-destination');
+    }, 400);
   }
 }
 
@@ -126,6 +131,11 @@ function takePhoto() {
       btnGallery.style.borderColor = '';
       btnGallery.style.boxShadow = '';
     }, 300);
+
+    // Abrir menu de destino após foto
+    setTimeout(() => {
+      if (typeof openOverlay === 'function') openOverlay('overlay-capture-destination');
+    }, 400);
   }, 650);
 }
 
