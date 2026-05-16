@@ -101,6 +101,15 @@ document.addEventListener('click', (e) => {
     if (isSingleChoice) {
         tag.closest('.student-tags').querySelectorAll('.student-tag').forEach(t => t.classList.remove('active-tag'));
         tag.classList.add('active-tag');
+
+        // Se for mudança de formato no overlay de exportação de documento
+        if (labelText.includes('FORMATO') && tag.closest('#overlay-doc-exportar')) {
+            const saveBtn = document.getElementById('btn-save-doc');
+            if (saveBtn) {
+                const format = tag.textContent.replace('.', ''); // Remove o ponto
+                saveBtn.textContent = `Salvar ${format}`;
+            }
+        }
     } else {
         // Seleção múltipla para matérias
         tag.classList.toggle('active-tag');
@@ -142,7 +151,7 @@ document.addEventListener('click', (e) => {
     if (window.showNotification) {
         let message = 'Ação realizada!';
         if (actionText === 'Exportar para Google Docs' || actionText === 'Salvar no google docs') message = 'Exportação concluída!';
-        else if (actionText === 'Salvar PDF') message = 'Salvo com sucesso!';
+        else if (actionText.startsWith('Salvar')) message = 'Salvo com sucesso!';
         else if (actionText === 'Compartilhar') message = 'Compartilhado com sucesso!';
         else if (actionText.includes('Salvar')) message = 'Salvo com sucesso!';
         else if (actionText.includes('Exportar')) message = 'Exportação iniciada...';
