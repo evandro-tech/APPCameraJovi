@@ -6,6 +6,7 @@
   position: relative;
   flex-shrink: 0;
   overflow: hidden;
+  transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Vinheta sutil nas bordas para profundidade */
@@ -172,22 +173,28 @@
 .brightness-track {
   position: absolute;
   right: 24px;
-  top: 50%;
+  top: 322px; /* Centro do viewfinder (62 top + 260 meio) */
   transform: translateY(-50%);
   width: 3px;
   height: 180px;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.12);
   border-radius: 3px;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  z-index: 10;
+  transition: opacity 0.3s ease, visibility 0.3s ease, top 0.4s ease;
+  z-index: 20;
 }
+
 
 .brightness-track.show {
   opacity: 1;
   visibility: visible;
 }
+
+.camera-app.aspect-1-1 .brightness-track {
+  top: 257px !important; /* Centro do 1:1 (62 + 195) */
+}
+
 
 .brightness-fill {
   position: absolute;
@@ -221,9 +228,9 @@
 /* ---- Zoom Selector ---- */
 .zoom-selector {
   position: absolute;
-  bottom: 44px;
+  top: 520px; /* Alinhado ao final do viewfinder padrão */
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(-64px);
   background: rgba(13,13,18,0.75);
   backdrop-filter: blur(16px);
   border: 1px solid rgba(255,255,255,0.08);
@@ -233,14 +240,26 @@
   padding: 3px;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.25s ease, visibility 0.25s ease;
-  z-index: 10;
+  transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.4s ease, top 0.4s ease;
+  z-index: 20;
 }
 
 .zoom-selector.show {
   opacity: 1;
   visibility: visible;
 }
+
+/* Regra especial para 1:1 */
+.camera-app.aspect-1-1 .zoom-selector {
+  opacity: 1 !important;
+  visibility: visible !important;
+  top: 390px !important; /* Final do viewfinder 1:1 (390) */
+  transform: translateX(-50%) translateY(95px); /* Desce mais para entrar na área escura */
+  background: transparent;
+  border: none;
+  backdrop-filter: none;
+}
+
 
 .zoom-btn {
   width: 42px;
@@ -373,3 +392,25 @@
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
+
+/* ---- Timer Countdown ---- */
+.timer-countdown {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(2);
+  color: white;
+  font-size: 120px;
+  font-weight: 200;
+  font-family: inherit;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.3s ease;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.timer-countdown.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}

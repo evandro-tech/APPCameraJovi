@@ -10,7 +10,48 @@
   position: relative;
   z-index: 10;
   border-top: 1px solid rgba(255,255,255,0.04);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+.camera-app.aspect-full .bottom-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: transparent;
+  border-top: none;
+}
+
+.camera-app.aspect-1-1 .bottom-controls {
+  padding-top: 152px; /* 130px de diferença do 3:4 + 22px padrão */
+  justify-content: space-between;
+  padding-bottom: 34px;
+}
+
+
+.camera-app.aspect-full .mode-bar-container::before,
+.camera-app.aspect-full .mode-bar-container::after,
+.camera-app.aspect-full .mode-item.active::after {
+  display: none;
+}
+
+
+
+.camera-app.aspect-full .mode-item.active {
+  background: transparent;
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+}
+
+.camera-app.aspect-full .btn-gallery,
+.camera-app.aspect-full .btn-flip {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+
+
 
 /* ---- Controls Row ---- */
 .controls-row {

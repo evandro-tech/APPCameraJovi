@@ -43,16 +43,46 @@ btnTimer.addEventListener('click', () => {
 
 // --- RATIO CYCLE ---
 const btnRatio = document.getElementById('btn-ratio');
+const viewfinder = document.querySelector('.viewfinder');
 const ratioStates = ['3:4', '9:16', '1:1', 'Full'];
 let currentRatioIdx = 0;
 
 btnRatio.addEventListener('click', () => {
   currentRatioIdx = (currentRatioIdx + 1) % ratioStates.length;
-  btnRatio.innerText = ratioStates[currentRatioIdx];
+  const state = ratioStates[currentRatioIdx];
+  btnRatio.innerText = state;
+  
+  const cameraApp = document.getElementById('camera-app');
+  
+  // Lógica de Escala / Ratio
+  switch(state) {
+    case '3:4':
+      viewfinder.style.height = '520px';
+      cameraApp.classList.remove('aspect-full');
+      cameraApp.classList.remove('aspect-1-1');
+      break;
+    case '9:16':
+      viewfinder.style.height = '738px'; // Cobre até o fim
+      cameraApp.classList.add('aspect-full');
+      cameraApp.classList.remove('aspect-1-1');
+      break;
+    case '1:1':
+      viewfinder.style.height = '390px';
+      cameraApp.classList.remove('aspect-full');
+      cameraApp.classList.add('aspect-1-1');
+      break;
+    case 'Full':
+      viewfinder.style.height = '738px'; 
+      cameraApp.classList.add('aspect-full');
+      cameraApp.classList.remove('aspect-1-1');
+      break;
+  }
+
   // Micro feedback
   btnRatio.style.opacity = '0.5';
   setTimeout(() => { btnRatio.style.opacity = ''; }, 150);
 });
+
 
 // --- SETTINGS / MORE MODES ---
 const btnSettings = document.getElementById('btn-settings');
